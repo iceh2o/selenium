@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase xmlns="com.mufg.ast" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="TestCase.xsd">
+    <case id="login" type="payment">
+        <step type="url" value="https://www.frbservices.org/EPaymentsDirectory/FedACHdir.txt"/>
+        <step type="link" by="id:agree_terms_use" optional="true"/>
+        <step type="url" value="https://www.frbservices.org/EPaymentsDirectory/FedACHdir.txt"/>
+    </case>
+</testcase>
+

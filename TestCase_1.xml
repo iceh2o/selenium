@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase xmlns="com.mufg.ast" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="TestCase.xsd">
+    <case id="login" type="payment">
+        <step type="url" value="https://nj7cbdmsitf2.btmna.com:9045/cbbtmu/logon/sbuser"/>
+        <step type="input" by="name:companyID" value="100001"/>
+        <step type="input" by="name:j_username" value="u000783"/>
+        <step type="input" by="name:j_password" value="password_1"/>
+        <step type="image" by="css:input[type='image']"/>        
+        <step type="image" by="link:New Wire Payment"/>
+        <step type="select" by="name:paymentType" value="label=BookWire"/>
+        <step type="image" by="name:submit_continuePmt"/>
+        <step type="input" by="name:debitAmount.value" value="10"/>
+        <step type="select" by="name:debitAccount" value="label=Checking 1 -- 0310027764 -- USD -- N/A"/>
+        <step type="input" by="name:detailsOfPayment1" value="mike e"/>
+        <step type="input" by="name:detailsOfPayment2" value="add1"/>
+        <step type="input" by="name:detailsOfPayment3" value="add2"/>
+        <step type="select" by="name:benfIdType" value="label=Account Number"/>
+        <step type="input" by="name:benfId" value="1234567890"/>
+        <step type="input" by="name:benefeciaryName" value="mike 3"/>
+        <step type="input" by="name:benfAddr1" value="add1"/>
+        <step type="input" by="name:benfAddr2" value="add2"/>
+        <step type="select" by="name:benefPersonalBankId" value="label=YASHIRONI NASH--026009632--ABA (Wire)"/>        
+        <step type="image" by="name:submit_preview"/>
+    </case>
+</testcase>
+

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase xmlns="com.mufg.ast" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+          endTime="Tue Jul 19 12:38:40 EDT 2016" 
+          startTime="Tue Jul 19 12:02:32 EDT 2016" xsi:schemaLocation="TestCase.xsd">
+    <case 
+        endTime="Tue Jul 19 12:03:05 EDT 2016" id="login" 
+        startTime="Tue Jul 19 12:02:32 EDT 2016" 
+         
+        type="login">
+        <step type="url" value="https://nj7cbdmsitf2.btmna.com:9045/cbbtmu/logon/sbuser"/>
+        <step by="name:companyID" type="input" value="100090"/>
+        <step by="name:j_username" type="input" value="u000783a"/>
+        <!-- <step type="pause"  value="10" highlight="name:j_password"/>  -->          
+        <step by="name:j_password" type="pause"/> 
+        <step by="name:sbLogonForm" type="form"/>
+    </case>
+    <case endTime="Tue Jul 19 12:05:08 EDT 2016" id="INTWIRE-TEMPLATES-01-01" startTime="Tue Jul 19 12:03:05 EDT 2016"  type="payment">
+        <step by="text:PAYMENTS" type="link"/>
+        <step by="text:Wires" type="link"/>
+        <step by="text:New Wire Payment" type="link"/>        
+        <step by="name:templateType" type="select" value="SWIFT FC JPY 1 - Mike e - 0090766502 - JPY"/>        
+        <step by="name:submit_continueTemplatePayment" type="image"/>
+        <!-- Payment Information                                                                    -->
+        <step by="name:contractNumber" type="input" value=""/>
+        <step by="name:creditAmount.value" type="input" value="100"/>
+        <step by="name:contractRate" type="input" value=""/>
+        <step by="name:detailsOfPayment1" type="input" value=""/>
+        <step by="name:detailsOfPayment2" type="input" value=""/>
+        <step by="name:detailsOfPayment3" type="input" value=""/>
+        <step by="name:detailsOfPayment4" type="input" value=""/>
+        <!-- Additional Routing Information (Optional)             -->
+        <!--
+        <step type="select" by="name:receiverInfo1" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription1" value=""/>
+        <step type="select" by="name:receiverInfo2" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription2" value=""/>
+        <step type="select" by="name:receiverInfo3" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription3" value=""/>
+        <step type="select" by="name:receiverInfo4" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription4" value=""/>
+        -->
+        
+        <!-- Payment Schedule                                      -->
+        <step by="name:submit_calculateValueDate" type="image"/>
+        <!--
+        <step type="input"  by="name:effectiveDate" value="{today}"/>
+        -->
+        <!-- radio value are finite | indefinite | enddate  -->
+        <step by="name:recurrenceDuration" type="radio" value="finite"/>
+        <!--
+        <step type="input"  by="name:endDate" value="08/14/2016"/>
+        -->
+        
+        <!-- Options                                                    -->
+        <!-- radio value are save | approveOnSubmit  -->
+        <step by="name:approvalType" type="radio" value="save"/>
+        <step by="name:submit_preview" type="image"/>
+        <step type="screen-capture"/>
+        <step by="name:submit_submit" type="image"/>
+        <step by="id:msgBlockSuccess-successText" chopf="Sequence Number:" chopt="Payment Type" id="seqNum0101" type="conf-capture" value=" 2388011&#10;    "/>
+        <step type="screen-capture"/>
+        <step by="xpath://img[contains(@src,'/images/icn_exit.gif')]" type="image"/>
+        <step by="id:btnLogout" reporterror="false" type="image"/>
+
+        
+        <step by="name:companyID" type="input" value="100090"/>
+        <step by="name:j_username" type="input" value="u000783"/>
+        <!-- <step type="pause"  value="10" highlight="name:j_password"/>  -->          
+        <step by="name:j_password" pause="true" type="input" value="tmppass_00"/> 
+        <step by="name:sbLogonForm" type="form"/>
+        <step by="name:sequenceNumber" ref="seqNum0101" type="input"/>
+        <step by="name:submit_entry" type="image"/>
+        <step by="name:xactSelect" type="checkbox" value="0"/>
+        <step by="name:submit_approve" type="image"/>
+        <step by="name:submit_approve" type="image"/>
+    </case>
+    <case endTime="Tue Jul 19 12:38:40 EDT 2016" id="logout" startTime="Tue Jul 19 12:38:39 EDT 2016"  type="logout">
+        <step by="xpath://img[contains(@src,'/images/icn_exit.gif')]" type="image"/>
+        <step by="id:btnLogout" reporterror="false" type="image"/>
+    </case>   
+</testcase>

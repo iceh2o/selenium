@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           targetNamespace="com.mufg.ast">
+    <xs:element name="testcase">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" name="case">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" name="step">
+                                <xs:complexType>
+                                    <!-- type of element from HTML page -->
+                                    <xs:attribute name="type" use="required">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:enumeration value="url"/>
+                                                <xs:enumeration value="input"/>
+                                                <xs:enumeration value="checkbox"/>
+                                                <xs:enumeration value="radio"/>
+                                                <xs:enumeration value="form"/>
+                                                <xs:enumeration value="pause"/>
+                                                <xs:enumeration value="link"/>                                                    
+                                                <xs:enumeration value="select"/>
+                                                <xs:enumeration value="image"/>
+                                                <xs:enumeration value="screen-capture"/>
+                                                <xs:enumeration value="conf-capture"/>
+                                                <xs:enumeration value="frame"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:attribute>
+                                    <!-- value of element -->
+                                    <xs:attribute name="value"/>
+                                    <xs:attribute name="id"/>
+                                    <!-- select "by" element name, id or xpath -->
+                                    <xs:attribute name="by"/>
+                                    <!-- trim selected value? -->
+                                    <xs:attribute default="true" name="trim">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:enumeration value="true"/>
+                                                <xs:enumeration value="false"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>                                                
+                                    </xs:attribute>
+                                    <!-- is element optional? Do we report error if we encounter error when process this element?" -->
+                                    <xs:attribute name="reporterror" default="false">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:enumeration value="true"/>
+                                                <xs:enumeration value="false"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>                                                
+                                    </xs:attribute>
+                                    <!-- reference to another element by ID -->
+                                    <xs:attribute name="ref"/>
+                                    <!-- string value to do substring(chop_from, chop_to) -->
+                                    <xs:attribute name="chopf"/>
+                                    <!-- string value to do substring(chop_from, chop_to) -->
+                                    <xs:attribute name="chopt"/>
+                                    <!-- for element type select and checkbox, do we select by option value or visible value -->
+                                    <xs:attribute name="optionvalue" default="false">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:enumeration value="true"/>
+                                                <xs:enumeration value="false"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>                                                                                        
+                                    </xs:attribute>
+                                    <xs:attribute name="description"/>
+                                    <xs:attribute name="optional" default="false">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:enumeration value="true"/>
+                                                <xs:enumeration value="false"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>                                                                                                                
+                                    </xs:attribute>
+                                    <xs:attribute name="idx"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="id"/>
+                        <xs:attribute name="type"/>
+                        <xs:attribute name="startTime"/>
+                        <xs:attribute name="endTime"/>
+                        <xs:attribute name="status"/>
+                        <xs:attribute name="description"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="startTime"/>
+            <xs:attribute name="endTime"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

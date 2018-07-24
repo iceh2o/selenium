@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase xmlns="com.mufg.ast" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="TestCase.xsd">
+    <case id="login" type="payment">
+        <step type="url" value="https://sso-tst.unionbank.com/"/>
+        <step type="input" by="id:userId" value="uswbuser1"/>
+        <step type="image" by="xpath://img[@title='Next']"/>
+        <step type="input" by="id:PASSWORD" value="UswDemo1"/>
+        <step type="image" by="xpath://img[@title='Submit']"/>
+        <step type="url" value="https://ina-tst.unionbank.com/s1gcb/portal/ssoLogon?APPLICATION_CONTEXT=ACH&amp;appId=AXW"/>
+<!--        <step type="image" by="css:button.ub-dialog-window-close-link" optional="true"/>
+        <step type="link" by="link:ACH"/>
+        <step type="frame" by="index:0" optional="true"/>-->
+        <step type="link" by="css:a.nav2selected"/>
+        <step type="link" by="xpath://a[@title='Create a New ACH Payment']"/>
+        <step type="select" by="name:transactionType"  value="PPD - Prearranged Payment &amp; Deposit Entry"/>
+        <step type="select" by="name:origAccount"  value="******1492 - USWB Demo Account 1"/>
+        <step type="select" by="name:achCompanyId"  value="1212121212"/>
+        <step type="input" by="name:companyEntryDesc" value="{today}"/>
+        <step type="image" by="name:submit_addRecipientsFromList"/>
+        <step type="checkbox" by="name:xactSelect" idx="0"/>
+        <step type="image" by="name:submit_submit"/>
+        <step type="image" by="name:submit_done"/>
+        <step type="input" by="name:amountArray[0]" value="14.00"/>
+        <step type="image" by="name:submit_preview"/>
+        <step type="image" by="name:submit_submit"/>
+    </case>
+</testcase>
+

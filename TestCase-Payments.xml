@@ -1,0 +1,1066 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcase xmlns="com.mufg.ast" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="TestCase.xsd">
+    <case id="login" type="login">
+        <step type="url" value="https://nj7cbdmsitf2.btmna.com:9045/cbbtmu/logon/sbuser"/>
+        <step by="name:companyID" type="input" value="100090"/>
+        <step by="name:j_username" type="input" value="u000783a"/>
+        <!-- <step by="name:j_password" type="pause"/>  -->
+        <step by="name:j_password" type="input" value="tmppass_00"/> 
+        <step by="name:sbLogonForm" type="form"/>
+    </case>
+    <case id="INTWIRE-TEMPLATES-01-01" type="payment">
+        <step type="link"   by="text:PAYMENTS"/>
+        <step type="link"   by="text:Wires"/>
+        <step type="link"   by="text:New Wire Payment"/>        
+        <step type="select" by="name:templateType" value="SWIFT FC JPY 1 - Mike e - 0090766502 - JPY"/>        
+        <step type="image"  by="name:submit_continueTemplatePayment"/>
+        <!-- Payment Information                                                                    -->
+        <step type="input"  by="name:contractNumber" value=""/>
+        <step type="input"  by="name:creditAmount.value" value="100"/>
+        <step type="input"  by="name:contractRate" value=""/>
+        <step type="input"  by="name:detailsOfPayment1" value=""/>
+        <step type="input"  by="name:detailsOfPayment2" value=""/>
+        <step type="input"  by="name:detailsOfPayment3" value=""/>
+        <step type="input"  by="name:detailsOfPayment4" value=""/>
+        <!-- Additional Routing Information (Optional)             -->
+        <!--
+        <step type="select" by="name:receiverInfo1" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription1" value=""/>
+        <step type="select" by="name:receiverInfo2" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription2" value=""/>
+        <step type="select" by="name:receiverInfo3" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription3" value=""/>
+        <step type="select" by="name:receiverInfo4" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription4" value=""/>
+        -->
+        
+        <!-- Payment Schedule                                      -->
+        <step type="image"  by="name:submit_calculateValueDate"/>
+        <!--
+        <step type="input"  by="name:effectiveDate" value="{today}"/>
+        -->
+        <!-- radio value are finite | indefinite | enddate  -->
+        <step type="radio" by="name:recurrenceDuration" value="finite"/>
+        <!--
+        <step type="input"  by="name:endDate" value="08/14/2016"/>
+        -->
+        
+        <!-- Options                                                    -->
+        <!-- radio value are save | approveOnSubmit  -->
+        <step type="radio" by="name:approvalType" value="save"/>
+        <step type="image"  by="name:submit_preview"/>
+        <step type="screen-capture"/>
+        <step type="image"  by="name:submit_submit"/>
+        <step id="seqNum0101" type="conf-capture" by="id:msgBlockSuccess-successText" chopf="Sequence Number:" chopt="Payment Type"/>
+        <step type="screen-capture"/>
+    </case>
+    <case id="INTWIRE-NON-REPETITIVE-02-01" type="payment">
+        <!-- 
+        <step type="link"   by="text:PAYMENTS"/>
+        -->
+        <step type="link"   by="text:Wires"/>
+        <step type="link"   by="text:New Wire Payment"/>
+        <step type="select" by="name:paymentType" value="International Wire"/>        
+        <step type="image"  by="name:submit_continuePmt"/>
+        <!-- Payment Information -->
+        <step type="select" by="name:debitAccount" value="1374" optionvalue="true" description="Checking 1 -- 0310027764 -- USD -- N/A"/>
+        <step type="select" by="name:creditAmount.currency.currencyCode" value="USD" optionvalue="true"/>
+        <step type="input"  by="name:contractNumber" value=""/>
+        <step type="input"  by="name:detailsOfPayment1" value=""/>
+        <step type="input"  by="name:detailsOfPayment2" value=""/>
+        <step type="input"  by="name:detailsOfPayment3" value=""/>
+        <step type="input"  by="name:detailsOfPayment4" value=""/>
+        <step type="input"  by="name:creditAmount.value" value="100"/>
+        <step type="input"  by="name:contractRate" value=""/>
+        <!-- Beneficiary Information -->
+        <step type="select" by="name:benfIdType" value="Account Number"/>
+        <step type="input"  by="name:benfId" value="1234567890"/>
+        <step type="input"  by="name:benefeciaryName" value="tester1"/>
+        <step type="input"  by="name:benfAddr1" value="address1"/>
+        <step type="input"  by="name:benfAddr2" value="address2"/>
+        <step type="input"  by="name:benfAddr3" value=""/>
+        <step type="select" by="name:beneCountry.countryCode" value="USA" optionvalue="true"/>
+        <!--
+        <step type="select" by="name:benefPersonalBankId" value="Select a Bank"/>
+        -->
+        <step type="select" by="name:benefBankIdType" value="SWIFT (international)"/>
+        <step type="input"  by="name:benfBankId" value="CITIJPJ10JS"/>
+        <step type="input"  by="name:benefBankName" value="SHORE P INCORPORATED"/>
+        <step type="input"  by="name:benefBankAddr1" value="1171 RED FOX MANOR BLVD "/>
+        <step type="input"  by="name:benefBankAddr2" value="OSAKA JAPAN"/>
+        <step type="input"  by="name:benefBankAddr3" value=""/>
+        
+        <!-- Additional Routing Information (Optional) -->
+        <step type="radio"  by="name:senderReference" value="letBTMUSelect"/>
+        <!--
+        <step type="select" by="name:receiverInfo1" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription1" value=""/>
+        <step type="select" by="name:receiverInfo2" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription2" value=""/>
+        <step type="select" by="name:receiverInfo3" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription3" value=""/>
+        <step type="select" by="name:receiverInfo4" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription4" value=""/>
+        -->
+        <!-- Payment Schedule        -->        
+        <step type="image"  by="name:submit_calculateValueDate"/>
+        <!--
+        <step type="input"  by="name:effectiveDate" value="{today}"/>
+        -->
+        <step type="select" by="name:frequency" value="One Time Only"/>
+        <!-- radio value are finite | indefinite | enddate  -->
+        <step type="radio" by="name:recurrenceDuration" value="finite"/>
+        
+        <!--  Options -->
+        <step type="select" by="name:chargesCode" value="Shared"/>
+        <!--
+        <step type="checkbox" by="name:saveAsTemplate" value="on"/>
+        -->
+        <step type="radio" by="name:approvalType" value="save"/>    
+        <step type="image"  by="name:submit_preview"/>
+        <step type="screen-capture"/>
+        <step type="image"  by="name:submit_submit"/>
+        <step id="seqNum0201" type="conf-capture" by="id:msgBlockSuccess-successText" chopf="Sequence Number:" chopt="Payment Type" />
+        <step type="screen-capture"/>
+    </case>
+    <case id="BOOKWIRE-NON-REPETITIVE-03-01" type="payment">
+        <!-- 
+        <step type="link"   by="text:PAYMENTS"/>
+        -->
+        <step type="link"   by="text:Wires"/>
+        <step type="link"   by="text:New Wire Payment"/>
+        <step type="select" by="name:paymentType" value="BookWire"/>        
+        <step type="image"  by="name:submit_continuePmt"/>
+        <!-- Payment Information            -->
+        <step type="select" by="name:debitAccount" value="Checking 1 -- 0310027764 -- USD -- N/A"/>
+        <step type="input"  by="name:referenceForBeneficiary" value=""/>
+        <step type="input"  by="name:detailsOfPayment1" value=""/>
+        <step type="input"  by="name:detailsOfPayment2" value=""/>
+        <step type="input"  by="name:detailsOfPayment3" value=""/>
+        <step type="input"  by="name:detailsOfPayment4" value=""/>
+        <step type="input"  by="name:debitAmount.value" value="100"/>
+        <step type="input"  by="name:effectiveDate" value="{today}"/>
+        <step type="select" by="name:frequency" value="One Time Only"/>
+        <step type="radio" by="name:recurrenceDuration" value="finite"/>
+            
+        <!-- Beneficiary Information                 -->
+        <step type="select" by="name:benfIdType" value="Account Number"/>
+        <step type="input"  by="name:benfId" value="01234567890"/>
+        <step type="input"  by="name:benefeciaryName" value="Tester 1"/>
+        <step type="input"  by="name:benfAddr1" value=""/>
+        <step type="input"  by="name:benfAddr2" value=""/>
+        <step type="input"  by="name:benfAddr3" value=""/>
+        <step type="select" by="name:benefPersonalBankId" value="YASHIRONI NASH--026009632--ABA (Wire)"/>
+    
+        <!--  Options          -->
+        <!--
+        <step type="checkbox" by="name:saveAsTemplate" value="on"/>
+        -->
+        <step type="radio" by="name:approvalType" value="save"/>
+        <step type="image"  by="name:submit_preview"/>
+        <step type="screen-capture"/>
+        <step type="image"  by="name:submit_submit"/>
+        <step id="seqNum0301" type="conf-capture" by="id:msgBlockSuccess-successText" chopf="Sequence Number:" chopt="Payment Type"/>
+        <step type="screen-capture"/>
+    </case>
+    <case id="FEDWIRE-NON-REPETITIVE-04-01" type="payment">
+        <!-- 
+        <step type="link"   by="text:PAYMENTS"/>
+        -->
+        <step type="link"   by="text:Wires"/>
+        <step type="link"   by="text:New Wire Payment"/>
+        <step type="select" by="name:paymentType" value="Fedwire"/>        
+        <step type="image"  by="name:submit_continuePmt"/>
+        <!-- Payment Information            -->
+        <step type="select" by="name:debitAccount" value="Checking 1 -- 0310027764 -- USD -- N/A"/>
+        <step type="input"  by="name:referenceForBeneficiary" value=""/>
+        <step type="input"  by="name:detailsOfPayment1" value=""/>
+        <step type="input"  by="name:detailsOfPayment2" value=""/>
+        <step type="input"  by="name:detailsOfPayment3" value=""/>
+        <step type="input"  by="name:detailsOfPayment4" value=""/>
+        <step type="input"  by="name:debitAmount.value" value="100"/>
+        <step type="input"  by="name:effectiveDate" value="{today}"/>
+        <step type="select" by="name:frequency" value="One Time Only"/>
+        <step type="radio" by="name:recurrenceDuration" value="finite"/>
+            
+        <!-- Beneficiary Information -->
+        <step type="select" by="name:benfIdType" value="Account Number"/>
+        <step type="input"  by="name:benfId" value="1234567890"/>
+        <step type="input"  by="name:benefeciaryName" value="tester1"/>
+        <step type="input"  by="name:benfAddr1" value="address1"/>
+        <step type="input"  by="name:benfAddr2" value="address2"/>
+        <step type="input"  by="name:benfAddr3" value=""/>
+        <step type="select" by="name:beneCountry.countryCode" value="USA" optionvalue="true"/>
+        <!--
+        <step type="select" by="name:benefPersonalBankId" value="Select a Bank"/>
+        -->
+        <step type="select" by="name:benefBankIdType" value="ABA (Wire)"/>
+        <step type="input"  by="name:benfBankId" value="021000089"/>
+        <step type="input"  by="name:benefBankName" value="MID-YORK W CELLULAR"/>
+        <step type="input"  by="name:benefBankAddr1" value="1169 RED PONY STEAD BLVD"/>
+        <step type="input"  by="name:benefBankAddr2" value="NEW YORK NY UNITED STATES"/>
+        <step type="input"  by="name:benefBankAddr3" value=""/>
+      
+        <!-- Additional Information (Optional) -->
+        <!--
+        <step type="image"  by="name:submit_addIB"/>
+        <step type="image"  by="name:submit_addBankToBank"/>
+        -->
+    
+        <!--  Options          -->
+        <!--
+        <step type="checkbox" by="name:saveAsTemplate" value="on"/>
+        -->
+        <step type="radio" by="name:approvalType" value="save"/>    
+        <step type="image"  by="name:submit_preview"/>
+        <step type="screen-capture"/>
+        <step type="image"  by="name:submit_submit"/>
+        <step id="seqNum0201" type="conf-capture" by="id:msgBlockSuccess-successText" chopf="Sequence Number:" chopt="Payment Type" />
+        <step type="screen-capture"/>
+    </case>
+    <case id="INTWIRE-TEMPLATES-01-02" type="payment">
+        <step type="link"   by="text:PAYMENTS"/>
+        <step type="link"   by="text:Wires"/>
+        <step type="link"   by="text:New Wire Payment"/>        
+        <step type="select" by="name:templateType" value="SWIFT FC JPY 1 - Mike e - 0090766502 - JPY"/>        
+        <step type="image"  by="name:submit_continueTemplatePayment"/>
+        <!-- Payment Information                                                                    -->
+        <step type="input"  by="name:contractNumber" value=""/>
+        <step type="input"  by="name:creditAmount.value" value="100"/>
+        <step type="input"  by="name:contractRate" value=""/>
+        <step type="input"  by="name:detailsOfPayment1" value=""/>
+        <step type="input"  by="name:detailsOfPayment2" value=""/>
+        <step type="input"  by="name:detailsOfPayment3" value=""/>
+        <step type="input"  by="name:detailsOfPayment4" value=""/>
+        <!-- Additional Routing Information (Optional)             -->
+        <!--
+        <step type="select" by="name:receiverInfo1" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription1" value=""/>
+        <step type="select" by="name:receiverInfo2" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription2" value=""/>
+        <step type="select" by="name:receiverInfo3" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription3" value=""/>
+        <step type="select" by="name:receiverInfo4" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription4" value=""/>
+        -->
+        
+        <!-- Payment Schedule                                      -->
+        <step type="image"  by="name:submit_calculateValueDate"/>
+        <!--
+        <step type="input"  by="name:effectiveDate" value="{today}"/>
+        -->
+        <!-- radio value are finite | indefinite | enddate  -->
+        <step type="radio" by="name:recurrenceDuration" value="finite"/>
+        <!--
+        <step type="input"  by="name:endDate" value="08/14/2016"/>
+        -->
+        
+        <!-- Options                                                    -->
+        <!-- radio value are save | approveOnSubmit  -->
+        <step type="radio" by="name:approvalType" value="save"/>
+        <step type="image"  by="name:submit_preview"/>
+        <step type="screen-capture"/>
+        <step type="image"  by="name:submit_submit"/>
+        <step id="seqNum0101" type="conf-capture" by="id:msgBlockSuccess-successText" chopf="Sequence Number:" chopt="Payment Type"/>
+        <step type="screen-capture"/>
+    </case>
+    <case id="INTWIRE-NON-REPETITIVE-02-02" type="payment">
+        <!-- 
+        <step type="link"   by="text:PAYMENTS"/>
+        -->
+        <step type="link"   by="text:Wires"/>
+        <step type="link"   by="text:New Wire Payment"/>
+        <step type="select" by="name:paymentType" value="International Wire"/>        
+        <step type="image"  by="name:submit_continuePmt"/>
+        <!-- Payment Information -->
+        <step type="select" by="name:debitAccount" value="1374" optionvalue="true" description="Checking 1 -- 0310027764 -- USD -- N/A"/>
+        <step type="select" by="name:creditAmount.currency.currencyCode" value="USD" optionvalue="true"/>
+        <step type="input"  by="name:contractNumber" value=""/>
+        <step type="input"  by="name:detailsOfPayment1" value=""/>
+        <step type="input"  by="name:detailsOfPayment2" value=""/>
+        <step type="input"  by="name:detailsOfPayment3" value=""/>
+        <step type="input"  by="name:detailsOfPayment4" value=""/>
+        <step type="input"  by="name:creditAmount.value" value="100"/>
+        <step type="input"  by="name:contractRate" value=""/>
+        <!-- Beneficiary Information -->
+        <step type="select" by="name:benfIdType" value="Account Number"/>
+        <step type="input"  by="name:benfId" value="1234567890"/>
+        <step type="input"  by="name:benefeciaryName" value="tester1"/>
+        <step type="input"  by="name:benfAddr1" value="address1"/>
+        <step type="input"  by="name:benfAddr2" value="address2"/>
+        <step type="input"  by="name:benfAddr3" value=""/>
+        <step type="select" by="name:beneCountry.countryCode" value="USA" optionvalue="true"/>
+        <!--
+        <step type="select" by="name:benefPersonalBankId" value="Select a Bank"/>
+        -->
+        <step type="select" by="name:benefBankIdType" value="SWIFT (international)"/>
+        <step type="input"  by="name:benfBankId" value="CITIJPJ10JS"/>
+        <step type="input"  by="name:benefBankName" value="SHORE P INCORPORATED"/>
+        <step type="input"  by="name:benefBankAddr1" value="1171 RED FOX MANOR BLVD "/>
+        <step type="input"  by="name:benefBankAddr2" value="OSAKA JAPAN"/>
+        <step type="input"  by="name:benefBankAddr3" value=""/>
+        
+        <!-- Additional Routing Information (Optional) -->
+        <step type="radio"  by="name:senderReference" value="letBTMUSelect"/>
+        <!--
+        <step type="select" by="name:receiverInfo1" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription1" value=""/>
+        <step type="select" by="name:receiverInfo2" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription2" value=""/>
+        <step type="select" by="name:receiverInfo3" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription3" value=""/>
+        <step type="select" by="name:receiverInfo4" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription4" value=""/>
+        -->
+        <!-- Payment Schedule        -->        
+        <step type="image"  by="name:submit_calculateValueDate"/>
+        <!--
+        <step type="input"  by="name:effectiveDate" value="{today}"/>
+        -->
+        <step type="select" by="name:frequency" value="One Time Only"/>
+        <!-- radio value are finite | indefinite | enddate  -->
+        <step type="radio" by="name:recurrenceDuration" value="finite"/>
+        
+        <!--  Options -->
+        <step type="select" by="name:chargesCode" value="Shared"/>
+        <!--
+        <step type="checkbox" by="name:saveAsTemplate" value="on"/>
+        -->
+        <step type="radio" by="name:approvalType" value="save"/>    
+        <step type="image"  by="name:submit_preview"/>
+        <step type="screen-capture"/>
+        <step type="image"  by="name:submit_submit"/>
+        <step id="seqNum0201" type="conf-capture" by="id:msgBlockSuccess-successText" chopf="Sequence Number:" chopt="Payment Type" />
+        <step type="screen-capture"/>
+    </case>
+    <case id="BOOKWIRE-NON-REPETITIVE-03-02" type="payment">
+        <!-- 
+        <step type="link"   by="text:PAYMENTS"/>
+        -->
+        <step type="link"   by="text:Wires"/>
+        <step type="link"   by="text:New Wire Payment"/>
+        <step type="select" by="name:paymentType" value="BookWire"/>        
+        <step type="image"  by="name:submit_continuePmt"/>
+        <!-- Payment Information            -->
+        <step type="select" by="name:debitAccount" value="Checking 1 -- 0310027764 -- USD -- N/A"/>
+        <step type="input"  by="name:referenceForBeneficiary" value=""/>
+        <step type="input"  by="name:detailsOfPayment1" value=""/>
+        <step type="input"  by="name:detailsOfPayment2" value=""/>
+        <step type="input"  by="name:detailsOfPayment3" value=""/>
+        <step type="input"  by="name:detailsOfPayment4" value=""/>
+        <step type="input"  by="name:debitAmount.value" value="100"/>
+        <step type="input"  by="name:effectiveDate" value="{today}"/>
+        <step type="select" by="name:frequency" value="One Time Only"/>
+        <step type="radio" by="name:recurrenceDuration" value="finite"/>
+            
+        <!-- Beneficiary Information                 -->
+        <step type="select" by="name:benfIdType" value="Account Number"/>
+        <step type="input"  by="name:benfId" value="01234567890"/>
+        <step type="input"  by="name:benefeciaryName" value="Tester 1"/>
+        <step type="input"  by="name:benfAddr1" value=""/>
+        <step type="input"  by="name:benfAddr2" value=""/>
+        <step type="input"  by="name:benfAddr3" value=""/>
+        <step type="select" by="name:benefPersonalBankId" value="YASHIRONI NASH--026009632--ABA (Wire)"/>
+    
+        <!--  Options          -->
+        <!--
+        <step type="checkbox" by="name:saveAsTemplate" value="on"/>
+        -->
+        <step type="radio" by="name:approvalType" value="save"/>
+        <step type="image"  by="name:submit_preview"/>
+        <step type="screen-capture"/>
+        <step type="image"  by="name:submit_submit"/>
+        <step id="seqNum0301" type="conf-capture" by="id:msgBlockSuccess-successText" chopf="Sequence Number:" chopt="Payment Type"/>
+        <step type="screen-capture"/>
+    </case>
+    <case id="FEDWIRE-NON-REPETITIVE-04-01" type="payment">
+        <!-- 
+        <step type="link"   by="text:PAYMENTS"/>
+        -->
+        <step type="link"   by="text:Wires"/>
+        <step type="link"   by="text:New Wire Payment"/>
+        <step type="select" by="name:paymentType" value="Fedwire"/>        
+        <step type="image"  by="name:submit_continuePmt"/>
+        <!-- Payment Information            -->
+        <step type="select" by="name:debitAccount" value="Checking 1 -- 0310027764 -- USD -- N/A"/>
+        <step type="input"  by="name:referenceForBeneficiary" value=""/>
+        <step type="input"  by="name:detailsOfPayment1" value=""/>
+        <step type="input"  by="name:detailsOfPayment2" value=""/>
+        <step type="input"  by="name:detailsOfPayment3" value=""/>
+        <step type="input"  by="name:detailsOfPayment4" value=""/>
+        <step type="input"  by="name:debitAmount.value" value="100"/>
+        <step type="input"  by="name:effectiveDate" value="{today}"/>
+        <step type="select" by="name:frequency" value="One Time Only"/>
+        <step type="radio" by="name:recurrenceDuration" value="finite"/>
+            
+        <!-- Beneficiary Information -->
+        <step type="select" by="name:benfIdType" value="Account Number"/>
+        <step type="input"  by="name:benfId" value="1234567890"/>
+        <step type="input"  by="name:benefeciaryName" value="tester1"/>
+        <step type="input"  by="name:benfAddr1" value="address1"/>
+        <step type="input"  by="name:benfAddr2" value="address2"/>
+        <step type="input"  by="name:benfAddr3" value=""/>
+        <step type="select" by="name:beneCountry.countryCode" value="USA" optionvalue="true"/>
+        <!--
+        <step type="select" by="name:benefPersonalBankId" value="Select a Bank"/>
+        -->
+        <step type="select" by="name:benefBankIdType" value="ABA (Wire)"/>
+        <step type="input"  by="name:benfBankId" value="021000089"/>
+        <step type="input"  by="name:benefBankName" value="MID-YORK W CELLULAR"/>
+        <step type="input"  by="name:benefBankAddr1" value="1169 RED PONY STEAD BLVD"/>
+        <step type="input"  by="name:benefBankAddr2" value="NEW YORK NY UNITED STATES"/>
+        <step type="input"  by="name:benefBankAddr3" value=""/>
+      
+        <!-- Additional Information (Optional) -->
+        <!--
+        <step type="image"  by="name:submit_addIB"/>
+        <step type="image"  by="name:submit_addBankToBank"/>
+        -->
+    
+        <!--  Options          -->
+        <!--
+        <step type="checkbox" by="name:saveAsTemplate" value="on"/>
+        -->
+        <step type="radio" by="name:approvalType" value="save"/>    
+        <step type="image"  by="name:submit_preview"/>
+        <step type="screen-capture"/>
+        <step type="image"  by="name:submit_submit"/>
+        <step id="seqNum0201" type="conf-capture" by="id:msgBlockSuccess-successText" chopf="Sequence Number:" chopt="Payment Type" />
+        <step type="screen-capture"/>
+    </case>    
+    <case id="INTWIRE-TEMPLATES-01-03" type="payment">
+        <step type="link"   by="text:PAYMENTS"/>
+        <step type="link"   by="text:Wires"/>
+        <step type="link"   by="text:New Wire Payment"/>        
+        <step type="select" by="name:templateType" value="SWIFT FC JPY 1 - Mike e - 0090766502 - JPY"/>        
+        <step type="image"  by="name:submit_continueTemplatePayment"/>
+        <!-- Payment Information                                                                    -->
+        <step type="input"  by="name:contractNumber" value=""/>
+        <step type="input"  by="name:creditAmount.value" value="100"/>
+        <step type="input"  by="name:contractRate" value=""/>
+        <step type="input"  by="name:detailsOfPayment1" value=""/>
+        <step type="input"  by="name:detailsOfPayment2" value=""/>
+        <step type="input"  by="name:detailsOfPayment3" value=""/>
+        <step type="input"  by="name:detailsOfPayment4" value=""/>
+        <!-- Additional Routing Information (Optional)             -->
+        <!--
+        <step type="select" by="name:receiverInfo1" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription1" value=""/>
+        <step type="select" by="name:receiverInfo2" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription2" value=""/>
+        <step type="select" by="name:receiverInfo3" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription3" value=""/>
+        <step type="select" by="name:receiverInfo4" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription4" value=""/>
+        -->
+        
+        <!-- Payment Schedule                                      -->
+        <step type="image"  by="name:submit_calculateValueDate"/>
+        <!--
+        <step type="input"  by="name:effectiveDate" value="{today}"/>
+        -->
+        <!-- radio value are finite | indefinite | enddate  -->
+        <step type="radio" by="name:recurrenceDuration" value="finite"/>
+        <!--
+        <step type="input"  by="name:endDate" value="08/14/2016"/>
+        -->
+        
+        <!-- Options                                                    -->
+        <!-- radio value are save | approveOnSubmit  -->
+        <step type="radio" by="name:approvalType" value="save"/>
+        <step type="image"  by="name:submit_preview"/>
+        <step type="screen-capture"/>
+        <step type="image"  by="name:submit_submit"/>
+        <step id="seqNum0101" type="conf-capture" by="id:msgBlockSuccess-successText" chopf="Sequence Number:" chopt="Payment Type"/>
+        <step type="screen-capture"/>
+    </case>
+    <case id="INTWIRE-NON-REPETITIVE-02-03" type="payment">
+        <!-- 
+        <step type="link"   by="text:PAYMENTS"/>
+        -->
+        <step type="link"   by="text:Wires"/>
+        <step type="link"   by="text:New Wire Payment"/>
+        <step type="select" by="name:paymentType" value="International Wire"/>        
+        <step type="image"  by="name:submit_continuePmt"/>
+        <!-- Payment Information -->
+        <step type="select" by="name:debitAccount" value="1374" optionvalue="true" description="Checking 1 -- 0310027764 -- USD -- N/A"/>
+        <step type="select" by="name:creditAmount.currency.currencyCode" value="USD" optionvalue="true"/>
+        <step type="input"  by="name:contractNumber" value=""/>
+        <step type="input"  by="name:detailsOfPayment1" value=""/>
+        <step type="input"  by="name:detailsOfPayment2" value=""/>
+        <step type="input"  by="name:detailsOfPayment3" value=""/>
+        <step type="input"  by="name:detailsOfPayment4" value=""/>
+        <step type="input"  by="name:creditAmount.value" value="100"/>
+        <step type="input"  by="name:contractRate" value=""/>
+        <!-- Beneficiary Information -->
+        <step type="select" by="name:benfIdType" value="Account Number"/>
+        <step type="input"  by="name:benfId" value="1234567890"/>
+        <step type="input"  by="name:benefeciaryName" value="tester1"/>
+        <step type="input"  by="name:benfAddr1" value="address1"/>
+        <step type="input"  by="name:benfAddr2" value="address2"/>
+        <step type="input"  by="name:benfAddr3" value=""/>
+        <step type="select" by="name:beneCountry.countryCode" value="USA" optionvalue="true"/>
+        <!--
+        <step type="select" by="name:benefPersonalBankId" value="Select a Bank"/>
+        -->
+        <step type="select" by="name:benefBankIdType" value="SWIFT (international)"/>
+        <step type="input"  by="name:benfBankId" value="CITIJPJ10JS"/>
+        <step type="input"  by="name:benefBankName" value="SHORE P INCORPORATED"/>
+        <step type="input"  by="name:benefBankAddr1" value="1171 RED FOX MANOR BLVD "/>
+        <step type="input"  by="name:benefBankAddr2" value="OSAKA JAPAN"/>
+        <step type="input"  by="name:benefBankAddr3" value=""/>
+        
+        <!-- Additional Routing Information (Optional) -->
+        <step type="radio"  by="name:senderReference" value="letBTMUSelect"/>
+        <!--
+        <step type="select" by="name:receiverInfo1" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription1" value=""/>
+        <step type="select" by="name:receiverInfo2" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription2" value=""/>
+        <step type="select" by="name:receiverInfo3" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription3" value=""/>
+        <step type="select" by="name:receiverInfo4" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription4" value=""/>
+        -->
+        <!-- Payment Schedule        -->        
+        <step type="image"  by="name:submit_calculateValueDate"/>
+        <!--
+        <step type="input"  by="name:effectiveDate" value="{today}"/>
+        -->
+        <step type="select" by="name:frequency" value="One Time Only"/>
+        <!-- radio value are finite | indefinite | enddate  -->
+        <step type="radio" by="name:recurrenceDuration" value="finite"/>
+        
+        <!--  Options -->
+        <step type="select" by="name:chargesCode" value="Shared"/>
+        <!--
+        <step type="checkbox" by="name:saveAsTemplate" value="on"/>
+        -->
+        <step type="radio" by="name:approvalType" value="save"/>    
+        <step type="image"  by="name:submit_preview"/>
+        <step type="screen-capture"/>
+        <step type="image"  by="name:submit_submit"/>
+        <step id="seqNum0201" type="conf-capture" by="id:msgBlockSuccess-successText" chopf="Sequence Number:" chopt="Payment Type" />
+        <step type="screen-capture"/>
+    </case>
+    <case id="BOOKWIRE-NON-REPETITIVE-03-03" type="payment">
+        <!-- 
+        <step type="link"   by="text:PAYMENTS"/>
+        -->
+        <step type="link"   by="text:Wires"/>
+        <step type="link"   by="text:New Wire Payment"/>
+        <step type="select" by="name:paymentType" value="BookWire"/>        
+        <step type="image"  by="name:submit_continuePmt"/>
+        <!-- Payment Information            -->
+        <step type="select" by="name:debitAccount" value="Checking 1 -- 0310027764 -- USD -- N/A"/>
+        <step type="input"  by="name:referenceForBeneficiary" value=""/>
+        <step type="input"  by="name:detailsOfPayment1" value=""/>
+        <step type="input"  by="name:detailsOfPayment2" value=""/>
+        <step type="input"  by="name:detailsOfPayment3" value=""/>
+        <step type="input"  by="name:detailsOfPayment4" value=""/>
+        <step type="input"  by="name:debitAmount.value" value="100"/>
+        <step type="input"  by="name:effectiveDate" value="{today}"/>
+        <step type="select" by="name:frequency" value="One Time Only"/>
+        <step type="radio" by="name:recurrenceDuration" value="finite"/>
+            
+        <!-- Beneficiary Information                 -->
+        <step type="select" by="name:benfIdType" value="Account Number"/>
+        <step type="input"  by="name:benfId" value="01234567890"/>
+        <step type="input"  by="name:benefeciaryName" value="Tester 1"/>
+        <step type="input"  by="name:benfAddr1" value=""/>
+        <step type="input"  by="name:benfAddr2" value=""/>
+        <step type="input"  by="name:benfAddr3" value=""/>
+        <step type="select" by="name:benefPersonalBankId" value="YASHIRONI NASH--026009632--ABA (Wire)"/>
+    
+        <!--  Options          -->
+        <!--
+        <step type="checkbox" by="name:saveAsTemplate" value="on"/>
+        -->
+        <step type="radio" by="name:approvalType" value="save"/>
+        <step type="image"  by="name:submit_preview"/>
+        <step type="screen-capture"/>
+        <step type="image"  by="name:submit_submit"/>
+        <step id="seqNum0301" type="conf-capture" by="id:msgBlockSuccess-successText" chopf="Sequence Number:" chopt="Payment Type"/>
+        <step type="screen-capture"/>
+    </case>
+    <case id="FEDWIRE-NON-REPETITIVE-04-01" type="payment">
+        <!-- 
+        <step type="link"   by="text:PAYMENTS"/>
+        -->
+        <step type="link"   by="text:Wires"/>
+        <step type="link"   by="text:New Wire Payment"/>
+        <step type="select" by="name:paymentType" value="Fedwire"/>        
+        <step type="image"  by="name:submit_continuePmt"/>
+        <!-- Payment Information            -->
+        <step type="select" by="name:debitAccount" value="Checking 1 -- 0310027764 -- USD -- N/A"/>
+        <step type="input"  by="name:referenceForBeneficiary" value=""/>
+        <step type="input"  by="name:detailsOfPayment1" value=""/>
+        <step type="input"  by="name:detailsOfPayment2" value=""/>
+        <step type="input"  by="name:detailsOfPayment3" value=""/>
+        <step type="input"  by="name:detailsOfPayment4" value=""/>
+        <step type="input"  by="name:debitAmount.value" value="100"/>
+        <step type="input"  by="name:effectiveDate" value="{today}"/>
+        <step type="select" by="name:frequency" value="One Time Only"/>
+        <step type="radio" by="name:recurrenceDuration" value="finite"/>
+            
+        <!-- Beneficiary Information -->
+        <step type="select" by="name:benfIdType" value="Account Number"/>
+        <step type="input"  by="name:benfId" value="1234567890"/>
+        <step type="input"  by="name:benefeciaryName" value="tester1"/>
+        <step type="input"  by="name:benfAddr1" value="address1"/>
+        <step type="input"  by="name:benfAddr2" value="address2"/>
+        <step type="input"  by="name:benfAddr3" value=""/>
+        <step type="select" by="name:beneCountry.countryCode" value="USA" optionvalue="true"/>
+        <!--
+        <step type="select" by="name:benefPersonalBankId" value="Select a Bank"/>
+        -->
+        <step type="select" by="name:benefBankIdType" value="ABA (Wire)"/>
+        <step type="input"  by="name:benfBankId" value="021000089"/>
+        <step type="input"  by="name:benefBankName" value="MID-YORK W CELLULAR"/>
+        <step type="input"  by="name:benefBankAddr1" value="1169 RED PONY STEAD BLVD"/>
+        <step type="input"  by="name:benefBankAddr2" value="NEW YORK NY UNITED STATES"/>
+        <step type="input"  by="name:benefBankAddr3" value=""/>
+      
+        <!-- Additional Information (Optional) -->
+        <!--
+        <step type="image"  by="name:submit_addIB"/>
+        <step type="image"  by="name:submit_addBankToBank"/>
+        -->
+    
+        <!--  Options          -->
+        <!--
+        <step type="checkbox" by="name:saveAsTemplate" value="on"/>
+        -->
+        <step type="radio" by="name:approvalType" value="save"/>    
+        <step type="image"  by="name:submit_preview"/>
+        <step type="screen-capture"/>
+        <step type="image"  by="name:submit_submit"/>
+        <step id="seqNum0201" type="conf-capture" by="id:msgBlockSuccess-successText" chopf="Sequence Number:" chopt="Payment Type" />
+        <step type="screen-capture"/>
+    </case>
+    <case id="INTWIRE-TEMPLATES-01-04" type="payment">
+        <step type="link"   by="text:PAYMENTS"/>
+        <step type="link"   by="text:Wires"/>
+        <step type="link"   by="text:New Wire Payment"/>        
+        <step type="select" by="name:templateType" value="SWIFT FC JPY 1 - Mike e - 0090766502 - JPY"/>        
+        <step type="image"  by="name:submit_continueTemplatePayment"/>
+        <!-- Payment Information                                                                    -->
+        <step type="input"  by="name:contractNumber" value=""/>
+        <step type="input"  by="name:creditAmount.value" value="100"/>
+        <step type="input"  by="name:contractRate" value=""/>
+        <step type="input"  by="name:detailsOfPayment1" value=""/>
+        <step type="input"  by="name:detailsOfPayment2" value=""/>
+        <step type="input"  by="name:detailsOfPayment3" value=""/>
+        <step type="input"  by="name:detailsOfPayment4" value=""/>
+        <!-- Additional Routing Information (Optional)             -->
+        <!--
+        <step type="select" by="name:receiverInfo1" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription1" value=""/>
+        <step type="select" by="name:receiverInfo2" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription2" value=""/>
+        <step type="select" by="name:receiverInfo3" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription3" value=""/>
+        <step type="select" by="name:receiverInfo4" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription4" value=""/>
+        -->
+        
+        <!-- Payment Schedule                                      -->
+        <step type="image"  by="name:submit_calculateValueDate"/>
+        <!--
+        <step type="input"  by="name:effectiveDate" value="{today}"/>
+        -->
+        <!-- radio value are finite | indefinite | enddate  -->
+        <step type="radio" by="name:recurrenceDuration" value="finite"/>
+        <!--
+        <step type="input"  by="name:endDate" value="08/14/2016"/>
+        -->
+        
+        <!-- Options                                                    -->
+        <!-- radio value are save | approveOnSubmit  -->
+        <step type="radio" by="name:approvalType" value="save"/>
+        <step type="image"  by="name:submit_preview"/>
+        <step type="screen-capture"/>
+        <step type="image"  by="name:submit_submit"/>
+        <step id="seqNum0101" type="conf-capture" by="id:msgBlockSuccess-successText" chopf="Sequence Number:" chopt="Payment Type"/>
+        <step type="screen-capture"/>
+    </case>
+    <case id="INTWIRE-NON-REPETITIVE-02-04" type="payment">
+        <!-- 
+        <step type="link"   by="text:PAYMENTS"/>
+        -->
+        <step type="link"   by="text:Wires"/>
+        <step type="link"   by="text:New Wire Payment"/>
+        <step type="select" by="name:paymentType" value="International Wire"/>        
+        <step type="image"  by="name:submit_continuePmt"/>
+        <!-- Payment Information -->
+        <step type="select" by="name:debitAccount" value="1374" optionvalue="true" description="Checking 1 -- 0310027764 -- USD -- N/A"/>
+        <step type="select" by="name:creditAmount.currency.currencyCode" value="USD" optionvalue="true"/>
+        <step type="input"  by="name:contractNumber" value=""/>
+        <step type="input"  by="name:detailsOfPayment1" value=""/>
+        <step type="input"  by="name:detailsOfPayment2" value=""/>
+        <step type="input"  by="name:detailsOfPayment3" value=""/>
+        <step type="input"  by="name:detailsOfPayment4" value=""/>
+        <step type="input"  by="name:creditAmount.value" value="100"/>
+        <step type="input"  by="name:contractRate" value=""/>
+        <!-- Beneficiary Information -->
+        <step type="select" by="name:benfIdType" value="Account Number"/>
+        <step type="input"  by="name:benfId" value="1234567890"/>
+        <step type="input"  by="name:benefeciaryName" value="tester1"/>
+        <step type="input"  by="name:benfAddr1" value="address1"/>
+        <step type="input"  by="name:benfAddr2" value="address2"/>
+        <step type="input"  by="name:benfAddr3" value=""/>
+        <step type="select" by="name:beneCountry.countryCode" value="USA" optionvalue="true"/>
+        <!--
+        <step type="select" by="name:benefPersonalBankId" value="Select a Bank"/>
+        -->
+        <step type="select" by="name:benefBankIdType" value="SWIFT (international)"/>
+        <step type="input"  by="name:benfBankId" value="CITIJPJ10JS"/>
+        <step type="input"  by="name:benefBankName" value="SHORE P INCORPORATED"/>
+        <step type="input"  by="name:benefBankAddr1" value="1171 RED FOX MANOR BLVD "/>
+        <step type="input"  by="name:benefBankAddr2" value="OSAKA JAPAN"/>
+        <step type="input"  by="name:benefBankAddr3" value=""/>
+        
+        <!-- Additional Routing Information (Optional) -->
+        <step type="radio"  by="name:senderReference" value="letBTMUSelect"/>
+        <!--
+        <step type="select" by="name:receiverInfo1" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription1" value=""/>
+        <step type="select" by="name:receiverInfo2" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription2" value=""/>
+        <step type="select" by="name:receiverInfo3" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription3" value=""/>
+        <step type="select" by="name:receiverInfo4" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription4" value=""/>
+        -->
+        <!-- Payment Schedule        -->        
+        <step type="image"  by="name:submit_calculateValueDate"/>
+        <!--
+        <step type="input"  by="name:effectiveDate" value="{today}"/>
+        -->
+        <step type="select" by="name:frequency" value="One Time Only"/>
+        <!-- radio value are finite | indefinite | enddate  -->
+        <step type="radio" by="name:recurrenceDuration" value="finite"/>
+        
+        <!--  Options -->
+        <step type="select" by="name:chargesCode" value="Shared"/>
+        <!--
+        <step type="checkbox" by="name:saveAsTemplate" value="on"/>
+        -->
+        <step type="radio" by="name:approvalType" value="save"/>    
+        <step type="image"  by="name:submit_preview"/>
+        <step type="screen-capture"/>
+        <step type="image"  by="name:submit_submit"/>
+        <step id="seqNum0201" type="conf-capture" by="id:msgBlockSuccess-successText" chopf="Sequence Number:" chopt="Payment Type" />
+        <step type="screen-capture"/>
+    </case>
+    <case id="BOOKWIRE-NON-REPETITIVE-03-04" type="payment">
+        <!-- 
+        <step type="link"   by="text:PAYMENTS"/>
+        -->
+        <step type="link"   by="text:Wires"/>
+        <step type="link"   by="text:New Wire Payment"/>
+        <step type="select" by="name:paymentType" value="BookWire"/>        
+        <step type="image"  by="name:submit_continuePmt"/>
+        <!-- Payment Information            -->
+        <step type="select" by="name:debitAccount" value="Checking 1 -- 0310027764 -- USD -- N/A"/>
+        <step type="input"  by="name:referenceForBeneficiary" value=""/>
+        <step type="input"  by="name:detailsOfPayment1" value=""/>
+        <step type="input"  by="name:detailsOfPayment2" value=""/>
+        <step type="input"  by="name:detailsOfPayment3" value=""/>
+        <step type="input"  by="name:detailsOfPayment4" value=""/>
+        <step type="input"  by="name:debitAmount.value" value="100"/>
+        <step type="input"  by="name:effectiveDate" value="{today}"/>
+        <step type="select" by="name:frequency" value="One Time Only"/>
+        <step type="radio" by="name:recurrenceDuration" value="finite"/>
+            
+        <!-- Beneficiary Information                 -->
+        <step type="select" by="name:benfIdType" value="Account Number"/>
+        <step type="input"  by="name:benfId" value="01234567890"/>
+        <step type="input"  by="name:benefeciaryName" value="Tester 1"/>
+        <step type="input"  by="name:benfAddr1" value=""/>
+        <step type="input"  by="name:benfAddr2" value=""/>
+        <step type="input"  by="name:benfAddr3" value=""/>
+        <step type="select" by="name:benefPersonalBankId" value="YASHIRONI NASH--026009632--ABA (Wire)"/>
+    
+        <!--  Options          -->
+        <!--
+        <step type="checkbox" by="name:saveAsTemplate" value="on"/>
+        -->
+        <step type="radio" by="name:approvalType" value="save"/>
+        <step type="image"  by="name:submit_preview"/>
+        <step type="screen-capture"/>
+        <step type="image"  by="name:submit_submit"/>
+        <step id="seqNum0301" type="conf-capture" by="id:msgBlockSuccess-successText" chopf="Sequence Number:" chopt="Payment Type"/>
+        <step type="screen-capture"/>
+    </case>
+    <case id="FEDWIRE-NON-REPETITIVE-04-01" type="payment">
+        <!-- 
+        <step type="link"   by="text:PAYMENTS"/>
+        -->
+        <step type="link"   by="text:Wires"/>
+        <step type="link"   by="text:New Wire Payment"/>
+        <step type="select" by="name:paymentType" value="Fedwire"/>        
+        <step type="image"  by="name:submit_continuePmt"/>
+        <!-- Payment Information            -->
+        <step type="select" by="name:debitAccount" value="Checking 1 -- 0310027764 -- USD -- N/A"/>
+        <step type="input"  by="name:referenceForBeneficiary" value=""/>
+        <step type="input"  by="name:detailsOfPayment1" value=""/>
+        <step type="input"  by="name:detailsOfPayment2" value=""/>
+        <step type="input"  by="name:detailsOfPayment3" value=""/>
+        <step type="input"  by="name:detailsOfPayment4" value=""/>
+        <step type="input"  by="name:debitAmount.value" value="100"/>
+        <step type="input"  by="name:effectiveDate" value="{today}"/>
+        <step type="select" by="name:frequency" value="One Time Only"/>
+        <step type="radio" by="name:recurrenceDuration" value="finite"/>
+            
+        <!-- Beneficiary Information -->
+        <step type="select" by="name:benfIdType" value="Account Number"/>
+        <step type="input"  by="name:benfId" value="1234567890"/>
+        <step type="input"  by="name:benefeciaryName" value="tester1"/>
+        <step type="input"  by="name:benfAddr1" value="address1"/>
+        <step type="input"  by="name:benfAddr2" value="address2"/>
+        <step type="input"  by="name:benfAddr3" value=""/>
+        <step type="select" by="name:beneCountry.countryCode" value="USA" optionvalue="true"/>
+        <!--
+        <step type="select" by="name:benefPersonalBankId" value="Select a Bank"/>
+        -->
+        <step type="select" by="name:benefBankIdType" value="ABA (Wire)"/>
+        <step type="input"  by="name:benfBankId" value="021000089"/>
+        <step type="input"  by="name:benefBankName" value="MID-YORK W CELLULAR"/>
+        <step type="input"  by="name:benefBankAddr1" value="1169 RED PONY STEAD BLVD"/>
+        <step type="input"  by="name:benefBankAddr2" value="NEW YORK NY UNITED STATES"/>
+        <step type="input"  by="name:benefBankAddr3" value=""/>
+      
+        <!-- Additional Information (Optional) -->
+        <!--
+        <step type="image"  by="name:submit_addIB"/>
+        <step type="image"  by="name:submit_addBankToBank"/>
+        -->
+    
+        <!--  Options          -->
+        <!--
+        <step type="checkbox" by="name:saveAsTemplate" value="on"/>
+        -->
+        <step type="radio" by="name:approvalType" value="save"/>    
+        <step type="image"  by="name:submit_preview"/>
+        <step type="screen-capture"/>
+        <step type="image"  by="name:submit_submit"/>
+        <step id="seqNum0201" type="conf-capture" by="id:msgBlockSuccess-successText" chopf="Sequence Number:" chopt="Payment Type" />
+        <step type="screen-capture"/>
+    </case>
+    <case id="INTWIRE-TEMPLATES-01-05" type="payment">
+        <step type="link"   by="text:PAYMENTS"/>
+        <step type="link"   by="text:Wires"/>
+        <step type="link"   by="text:New Wire Payment"/>        
+        <step type="select" by="name:templateType" value="SWIFT FC JPY 1 - Mike e - 0090766502 - JPY"/>        
+        <step type="image"  by="name:submit_continueTemplatePayment"/>
+        <!-- Payment Information                                                                    -->
+        <step type="input"  by="name:contractNumber" value=""/>
+        <step type="input"  by="name:creditAmount.value" value="100"/>
+        <step type="input"  by="name:contractRate" value=""/>
+        <step type="input"  by="name:detailsOfPayment1" value=""/>
+        <step type="input"  by="name:detailsOfPayment2" value=""/>
+        <step type="input"  by="name:detailsOfPayment3" value=""/>
+        <step type="input"  by="name:detailsOfPayment4" value=""/>
+        <!-- Additional Routing Information (Optional)             -->
+        <!--
+        <step type="select" by="name:receiverInfo1" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription1" value=""/>
+        <step type="select" by="name:receiverInfo2" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription2" value=""/>
+        <step type="select" by="name:receiverInfo3" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription3" value=""/>
+        <step type="select" by="name:receiverInfo4" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription4" value=""/>
+        -->
+        
+        <!-- Payment Schedule                                      -->
+        <step type="image"  by="name:submit_calculateValueDate"/>
+        <!--
+        <step type="input"  by="name:effectiveDate" value="{today}"/>
+        -->
+        <!-- radio value are finite | indefinite | enddate  -->
+        <step type="radio" by="name:recurrenceDuration" value="finite"/>
+        <!--
+        <step type="input"  by="name:endDate" value="08/14/2016"/>
+        -->
+        
+        <!-- Options                                                    -->
+        <!-- radio value are save | approveOnSubmit  -->
+        <step type="radio" by="name:approvalType" value="save"/>
+        <step type="image"  by="name:submit_preview"/>
+        <step type="screen-capture"/>
+        <step type="image"  by="name:submit_submit"/>
+        <step id="seqNum0101" type="conf-capture" by="id:msgBlockSuccess-successText" chopf="Sequence Number:" chopt="Payment Type"/>
+        <step type="screen-capture"/>
+    </case>
+    <case id="INTWIRE-NON-REPETITIVE-02-05" type="payment">
+        <!-- 
+        <step type="link"   by="text:PAYMENTS"/>
+        -->
+        <step type="link"   by="text:Wires"/>
+        <step type="link"   by="text:New Wire Payment"/>
+        <step type="select" by="name:paymentType" value="International Wire"/>        
+        <step type="image"  by="name:submit_continuePmt"/>
+        <!-- Payment Information -->
+        <step type="select" by="name:debitAccount" value="1374" optionvalue="true" description="Checking 1 -- 0310027764 -- USD -- N/A"/>
+        <step type="select" by="name:creditAmount.currency.currencyCode" value="USD" optionvalue="true"/>
+        <step type="input"  by="name:contractNumber" value=""/>
+        <step type="input"  by="name:detailsOfPayment1" value=""/>
+        <step type="input"  by="name:detailsOfPayment2" value=""/>
+        <step type="input"  by="name:detailsOfPayment3" value=""/>
+        <step type="input"  by="name:detailsOfPayment4" value=""/>
+        <step type="input"  by="name:creditAmount.value" value="100"/>
+        <step type="input"  by="name:contractRate" value=""/>
+        <!-- Beneficiary Information -->
+        <step type="select" by="name:benfIdType" value="Account Number"/>
+        <step type="input"  by="name:benfId" value="1234567890"/>
+        <step type="input"  by="name:benefeciaryName" value="tester1"/>
+        <step type="input"  by="name:benfAddr1" value="address1"/>
+        <step type="input"  by="name:benfAddr2" value="address2"/>
+        <step type="input"  by="name:benfAddr3" value=""/>
+        <step type="select" by="name:beneCountry.countryCode" value="USA" optionvalue="true"/>
+        <!--
+        <step type="select" by="name:benefPersonalBankId" value="Select a Bank"/>
+        -->
+        <step type="select" by="name:benefBankIdType" value="SWIFT (international)"/>
+        <step type="input"  by="name:benfBankId" value="CITIJPJ10JS"/>
+        <step type="input"  by="name:benefBankName" value="SHORE P INCORPORATED"/>
+        <step type="input"  by="name:benefBankAddr1" value="1171 RED FOX MANOR BLVD "/>
+        <step type="input"  by="name:benefBankAddr2" value="OSAKA JAPAN"/>
+        <step type="input"  by="name:benefBankAddr3" value=""/>
+        
+        <!-- Additional Routing Information (Optional) -->
+        <step type="radio"  by="name:senderReference" value="letBTMUSelect"/>
+        <!--
+        <step type="select" by="name:receiverInfo1" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription1" value=""/>
+        <step type="select" by="name:receiverInfo2" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription2" value=""/>
+        <step type="select" by="name:receiverInfo3" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription3" value=""/>
+        <step type="select" by="name:receiverInfo4" value="/CHEQUE/"/>
+        <step type="input"  by="name:receiveCodeDescription4" value=""/>
+        -->
+        <!-- Payment Schedule        -->        
+        <step type="image"  by="name:submit_calculateValueDate"/>
+        <!--
+        <step type="input"  by="name:effectiveDate" value="{today}"/>
+        -->
+        <step type="select" by="name:frequency" value="One Time Only"/>
+        <!-- radio value are finite | indefinite | enddate  -->
+        <step type="radio" by="name:recurrenceDuration" value="finite"/>
+        
+        <!--  Options -->
+        <step type="select" by="name:chargesCode" value="Shared"/>
+        <!--
+        <step type="checkbox" by="name:saveAsTemplate" value="on"/>
+        -->
+        <step type="radio" by="name:approvalType" value="save"/>    
+        <step type="image"  by="name:submit_preview"/>
+        <step type="screen-capture"/>
+        <step type="image"  by="name:submit_submit"/>
+        <step id="seqNum0201" type="conf-capture" by="id:msgBlockSuccess-successText" chopf="Sequence Number:" chopt="Payment Type" />
+        <step type="screen-capture"/>
+    </case>
+    <case id="BOOKWIRE-NON-REPETITIVE-03-05" type="payment">
+        <!-- 
+        <step type="link"   by="text:PAYMENTS"/>
+        -->
+        <step type="link"   by="text:Wires"/>
+        <step type="link"   by="text:New Wire Payment"/>
+        <step type="select" by="name:paymentType" value="BookWire"/>        
+        <step type="image"  by="name:submit_continuePmt"/>
+        <!-- Payment Information            -->
+        <step type="select" by="name:debitAccount" value="Checking 1 -- 0310027764 -- USD -- N/A"/>
+        <step type="input"  by="name:referenceForBeneficiary" value=""/>
+        <step type="input"  by="name:detailsOfPayment1" value=""/>
+        <step type="input"  by="name:detailsOfPayment2" value=""/>
+        <step type="input"  by="name:detailsOfPayment3" value=""/>
+        <step type="input"  by="name:detailsOfPayment4" value=""/>
+        <step type="input"  by="name:debitAmount.value" value="100"/>
+        <step type="input"  by="name:effectiveDate" value="{today}"/>
+        <step type="select" by="name:frequency" value="One Time Only"/>
+        <step type="radio" by="name:recurrenceDuration" value="finite"/>
+            
+        <!-- Beneficiary Information                 -->
+        <step type="select" by="name:benfIdType" value="Account Number"/>
+        <step type="input"  by="name:benfId" value="01234567890"/>
+        <step type="input"  by="name:benefeciaryName" value="Tester 1"/>
+        <step type="input"  by="name:benfAddr1" value=""/>
+        <step type="input"  by="name:benfAddr2" value=""/>
+        <step type="input"  by="name:benfAddr3" value=""/>
+        <step type="select" by="name:benefPersonalBankId" value="YASHIRONI NASH--026009632--ABA (Wire)"/>
+    
+        <!--  Options          -->
+        <!--
+        <step type="checkbox" by="name:saveAsTemplate" value="on"/>
+        -->
+        <step type="radio" by="name:approvalType" value="save"/>
+        <step type="image"  by="name:submit_preview"/>
+        <step type="screen-capture"/>
+        <step type="image"  by="name:submit_submit"/>
+        <step id="seqNum0301" type="conf-capture" by="id:msgBlockSuccess-successText" chopf="Sequence Number:" chopt="Payment Type"/>
+        <step type="screen-capture"/>
+    </case>
+    <case id="FEDWIRE-NON-REPETITIVE-04-01" type="payment">
+        <!-- 
+        <step type="link"   by="text:PAYMENTS"/>
+        -->
+        <step type="link"   by="text:Wires"/>
+        <step type="link"   by="text:New Wire Payment"/>
+        <step type="select" by="name:paymentType" value="Fedwire"/>        
+        <step type="image"  by="name:submit_continuePmt"/>
+        <!-- Payment Information            -->
+        <step type="select" by="name:debitAccount" value="Checking 1 -- 0310027764 -- USD -- N/A"/>
+        <step type="input"  by="name:referenceForBeneficiary" value=""/>
+        <step type="input"  by="name:detailsOfPayment1" value=""/>
+        <step type="input"  by="name:detailsOfPayment2" value=""/>
+        <step type="input"  by="name:detailsOfPayment3" value=""/>
+        <step type="input"  by="name:detailsOfPayment4" value=""/>
+        <step type="input"  by="name:debitAmount.value" value="100"/>
+        <step type="input"  by="name:effectiveDate" value="{today}"/>
+        <step type="select" by="name:frequency" value="One Time Only"/>
+        <step type="radio" by="name:recurrenceDuration" value="finite"/>
+            
+        <!-- Beneficiary Information -->
+        <step type="select" by="name:benfIdType" value="Account Number"/>
+        <step type="input"  by="name:benfId" value="1234567890"/>
+        <step type="input"  by="name:benefeciaryName" value="tester1"/>
+        <step type="input"  by="name:benfAddr1" value="address1"/>
+        <step type="input"  by="name:benfAddr2" value="address2"/>
+        <step type="input"  by="name:benfAddr3" value=""/>
+        <step type="select" by="name:beneCountry.countryCode" value="USA" optionvalue="true"/>
+        <!--
+        <step type="select" by="name:benefPersonalBankId" value="Select a Bank"/>
+        -->
+        <step type="select" by="name:benefBankIdType" value="ABA (Wire)"/>
+        <step type="input"  by="name:benfBankId" value="021000089"/>
+        <step type="input"  by="name:benefBankName" value="MID-YORK W CELLULAR"/>
+        <step type="input"  by="name:benefBankAddr1" value="1169 RED PONY STEAD BLVD"/>
+        <step type="input"  by="name:benefBankAddr2" value="NEW YORK NY UNITED STATES"/>
+        <step type="input"  by="name:benefBankAddr3" value=""/>
+      
+        <!-- Additional Information (Optional) -->
+        <!--
+        <step type="image"  by="name:submit_addIB"/>
+        <step type="image"  by="name:submit_addBankToBank"/>
+        -->
+    
+        <!--  Options          -->
+        <!--
+        <step type="checkbox" by="name:saveAsTemplate" value="on"/>
+        -->
+        <step type="radio" by="name:approvalType" value="save"/>    
+        <step type="image"  by="name:submit_preview"/>
+        <step type="screen-capture"/>
+        <step type="image"  by="name:submit_submit"/>
+        <step id="seqNum0201" type="conf-capture" by="id:msgBlockSuccess-successText" chopf="Sequence Number:" chopt="Payment Type" />
+        <step type="screen-capture"/>
+    </case>
+    <case id="logout" type="logout">
+        <step by="xpath://img[contains(@src,'/images/icn_exit.gif')]" type="image"/>
+        <step by="id:btnLogout" reporterror="false" type="image"/>
+    </case>   
+</testcase>
+
